@@ -1,4 +1,3 @@
-import { redirect } from "react-router-dom";
 import { pool } from "../db/index.js";
 
 class UsersController {
