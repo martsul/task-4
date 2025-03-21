@@ -5,9 +5,9 @@ import { getUsers } from "../../hooks/use-users";
 
 class PostData {
     #links = {
-        banned: "http://localhost:5000/api/banned",
-        unbanned: "http://localhost:5000/api/unbanned",
-        delete: "http://localhost:5000/api/delete",
+        banned: "/api/banned",
+        unbanned: "/api/unbanned",
+        delete: "/api/delete",
     };
     #messages = {
         banned: "Users are blocked",
