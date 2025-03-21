@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin: process.env.FROM,
+        origin: process.env.FROM || "http://localhost:3000",
         credentials: true,
         methods: ["GET", "POST", "PUT", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization", "Cache-Control"],
@@ -18,7 +18,7 @@ app.use(
 );
 app.use("/api", router);
 
-app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "../client/dist")));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
