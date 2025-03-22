@@ -2,22 +2,28 @@ import { Table } from "react-bootstrap";
 import { useSelectUsers } from "../context/select-users/use-select-users";
 import { getUsers } from "../../hooks/use-users";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const UsersTable = () => {
-    const { users, setUsers } = useSelectUsers();
+    const { users, setUsers, addInputs } = useSelectUsers();
     const navigate = useNavigate();
-    getUsers().then((result) => {
-        if (result.redirect) {
-            navigate(result.redirect);
-        } else {
-            setUsers(result);
-        }
-    });
+
+    useEffect(() => {
+        getUsers().then((result) => {
+            if (result.redirect) {
+                navigate(result.redirect);
+            } else {
+                setUsers(result);
+                addInputs(result);
+            }
+        });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [navigate, setUsers]);
 
     return (
         <Table striped bordered hover>
             <UsersThead />
-            <UsersTbody data={users} />
+            {Array.isArray(users) && <UsersTbody data={users} />}
         </Table>
     );
 };
@@ -44,7 +50,7 @@ const UsersThead = () => {
     );
 };
 
-const UsersTbody = ({ data }) => {
+const UsersTbody = ({ data = [] }) => {
     const { allChecked, handlerAllChecked } = useSelectUsers();
 
     return (

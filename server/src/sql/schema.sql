@@ -6,7 +6,7 @@ CREATE TABLE users (
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL CHECK (LENGTH(password) >= 1),
-    lastEntry DATETIME DEFAULT CURRENT_TIMESTAMP,
+    lastEntry TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     isBlocked TINYINT(1) DEFAULT 0,
     UNIQUE INDEX emailUnique (email)
 );

@@ -5,9 +5,9 @@ import { getUsers } from "../../hooks/use-users";
 
 class PostData {
     #links = {
-        banned: "/api/banned",
-        unbanned: "/api/unbanned",
-        delete: "/api/delete",
+        banned: "https://server-6g34.onrender.com/api/banned",
+        unbanned: "https://server-6g34.onrender.com/api/unbanned",
+        delete: "https://server-6g34.onrender.com/api/delete",
     };
     #messages = {
         banned: "Users are blocked",
@@ -63,12 +63,12 @@ export const useToolbar = () => {
         const operation = event.currentTarget.id;
         const postData = new PostData(operation, navigate, selectedUsers);
         const result = await postData.post();
-        setMessage(result)
-        setTimeout(() => {setMessage(null)}, 800)
-        getUsers().then(setUsers)
+        setMessage(result);
+        setTimeout(() => {
+            setMessage(null);
+        }, 800);
+        getUsers().then(setUsers);
     };
 
     return { handlerClick, message };
 };
-
-

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 const getLink = (thereIsAccount) =>
     thereIsAccount
-        ? "/api/login"
-        : "/api/signup";
+        ? "https://server-6g34.onrender.com/api/login"
+        : "https://server-6g34.onrender.com/api/signup";
 
 const getData = (form) => {
     const formData = new FormData(form);
